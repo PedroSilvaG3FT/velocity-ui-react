@@ -1,0 +1,62 @@
+@import "/src/styles/variables";
+
+#chat-side-menu-item {
+  @apply w-full;
+
+  .item-action {
+    @apply px-3 h-12 w-full flex gap-2 items-center cursor-pointer rounded-md;
+
+    &:hover {
+      @apply font-bold;
+    }
+  }
+
+  > a {
+    @extend .item-action;
+
+    .arrow {
+      @apply ml-auto transition-transform duration-300;
+      transform: rotateX(180deg);
+
+      &.open {
+        transform: rotateX(0deg);
+      }
+    }
+  }
+
+  > ul {
+    @apply overflow-hidden duration-500;
+    transition-property: max-height;
+
+    &.closed {
+      max-height: 0px !important;
+    }
+
+    > li {
+      @apply pl-8;
+      @extend .item-action;
+
+      &.active {
+        color: $primary;
+      }
+
+      &:hover {
+        > section {
+          @apply flex;
+        }
+      }
+
+      > section {
+        @apply ml-auto hidden items-center gap-2;
+
+        > button {
+          @apply transition-transform duration-300;
+
+          &:hover {
+            transform: scale(1.3);
+          }
+        }
+      }
+    }
+  }
+}

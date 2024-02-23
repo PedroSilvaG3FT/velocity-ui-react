@@ -14,19 +14,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
-      <nav className="w-full flex gap-4 items-center">
-        <a href="/">Default</a>
-        <a href="/auth/sign-in">SignIn</a>
-        <a href="/auth/sign-up">SignUp</a>
-        <a href="/chat">Chat</a>
-        <a href="/chat/history">Chat History</a>
-      </nav>
-
-      <ChatProvider>
-        <RouterProvider router={router} />
-      </ChatProvider>
-    </>
+    <ChatProvider>
+      <RouterProvider router={router} />
+    </ChatProvider>
   );
 }
 
