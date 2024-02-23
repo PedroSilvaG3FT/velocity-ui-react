@@ -1,4 +1,4 @@
-import { httpClient } from "@/modules/@shared/http";
+import { httpClient } from "../../@shared/http";
 import {
   IChatSetupOptionResponse,
   IChatSetupOptionsItem,

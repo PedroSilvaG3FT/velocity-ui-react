@@ -1,5 +1,5 @@
-import store from "@/store";
 import axios, { AxiosRequestHeaders } from "axios";
+import store from "../../../store";
 
 const axiosFactory = (baseURL: string = "", headers?: AxiosRequestHeaders) =>
   axios.create({

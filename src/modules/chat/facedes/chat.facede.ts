@@ -6,7 +6,9 @@ import { ISendMessage } from "../interfaces/chat.interface";
 
 export class ChatFacede {
   public getModuleById(id: number) {
-    const modules = ObjectUtil.clone(store.getState().chatSetup.modules);
+    const modules: IChatSetupModuleItem[] = ObjectUtil.clone(
+      store.getState().chatSetup.modules
+    );
     return modules.find((item) => item.id === id);
   }
 

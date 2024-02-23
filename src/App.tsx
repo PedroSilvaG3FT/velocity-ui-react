@@ -1,4 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ChatProvider } from "./contexts/chat.context.tsx";
 import { AUTHENTICATION_ROUTES } from "./modules/authentication/pages/routes.tsx";
 import { CHAT_ROUTES } from "./modules/chat/pages/routes.tsx";
 
@@ -22,7 +23,9 @@ function App() {
         <a href="/chat/history">Chat History</a>
       </nav>
 
-      <RouterProvider router={router} />
+      <ChatProvider>
+        <RouterProvider router={router} />
+      </ChatProvider>
     </>
   );
 }

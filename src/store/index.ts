@@ -5,6 +5,9 @@ import storage from "./storage";
 
 const store = configureStore({
   reducer: persistReducer({ key: "root", storage }, reducers),
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({ serializableCheck: false });
+  },
 });
 
 export default store;
