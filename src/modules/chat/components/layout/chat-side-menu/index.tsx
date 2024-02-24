@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store";
 import ChatSideMenuItem from "./chat-side-menu-item";
 
-import "./chat-side-menu.scss";
+import "./styles.scss";
 
 const ChatSideMenu: React.FC = () => {
   const { userData } = useSelector((state: RootState) => state.auth);

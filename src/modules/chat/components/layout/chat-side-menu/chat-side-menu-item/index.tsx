@@ -8,7 +8,7 @@ import { chatActions } from "../../../../../../store/reducers/chat.reducer";
 import { MODULES_ICONS } from "../../../../constants/modules-icon.contant";
 import { SUBMODULES_ICONS } from "../../../../constants/submodules-icon.constant";
 import { IChatSetupModuleItem } from "../../../../interfaces/chat-setup.interface";
-import "./chat-side-menu-item.scss";
+import "./styles.scss";
 
 interface IChatSideMenuItemProps {
   isOpen: boolean;

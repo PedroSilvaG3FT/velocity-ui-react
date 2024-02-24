@@ -1,9 +1,9 @@
+import { createSlice } from "@reduxjs/toolkit";
+import store from "..";
 import {
   IChatSetupModuleItem,
   IChatSetupOptionsItem,
-} from "@/modules/chat/interfaces/chat-setup.interface";
-import { createSlice } from "@reduxjs/toolkit";
-import store from "..";
+} from "../../modules/chat/interfaces/chat-setup.interface";
 
 const initialState = {
   ides: [] as IChatSetupOptionsItem[],

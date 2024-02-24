@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ChatContext } from "../../../../contexts/chat.context";
 import ChatSideMenu from "./chat-side-menu";
-import "./layout.scss";
+import "./styles.scss";
 
 const ChatLayout: React.FC = () => {
   const chatContext = useContext(ChatContext);
