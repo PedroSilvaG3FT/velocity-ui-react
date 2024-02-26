@@ -1,4 +1,6 @@
+export type FormOptionValue = any;
+
 export interface IFormOption {
   label: string;
-  value: any;
+  value: FormOptionValue;
 }

@@ -1,0 +1,79 @@
+@import "/src/styles/variables";
+
+.app-select {
+  @apply relative z-[11];
+
+  .label-top {
+    @apply top-2 text-sm;
+  }
+
+  &.focus {
+    > div {
+      > label {
+        color: $primary;
+        @extend .label-top;
+      }
+
+      > hr {
+        @apply visible;
+      }
+
+      > i,
+      > svg {
+        color: $primary;
+      }
+    }
+  }
+
+  &.selected {
+    > div {
+      > label {
+        @extend .label-top;
+      }
+    }
+  }
+
+  > div {
+    @apply h-14 min-w-[200px] px-4 rounded-xl flex items-center relative cursor-pointer;
+    background: $bg-secondary;
+
+    > label {
+      @apply absolute opacity-60 transition-all duration-300;
+    }
+
+    > p {
+      @apply mt-3;
+    }
+
+    > hr {
+      @apply w-[85%] invisible absolute bottom-0;
+      border-color: $primary;
+    }
+
+    > i,
+    > svg {
+      @apply absolute right-2;
+    }
+
+    &:hover {
+      &::after {
+        @apply content-[''] w-full h-full absolute top-0 left-0 rounded-xl;
+        background: rgba(100, 100, 100, 0.283);
+      }
+    }
+  }
+
+  > ul {
+    @apply w-full max-h-[275px] absolute mt-2 rounded-xl overflow-y-auto shadow-lg;
+    background: $bg-secondary;
+
+    > li {
+      @apply p-4 cursor-pointer;
+
+      &:hover,
+      &.selected {
+        color: $primary;
+      }
+    }
+  }
+}

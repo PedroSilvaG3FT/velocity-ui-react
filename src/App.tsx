@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@material-tailwind/react";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ChatProvider } from "./contexts/chat.context.tsx";
 import { AUTHENTICATION_ROUTES } from "./modules/authentication/pages/routes.tsx";
@@ -13,10 +14,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const theme = {};
   return (
-    <ChatProvider>
-      <RouterProvider router={router} />
-    </ChatProvider>
+    <ThemeProvider value={theme}>
+      <ChatProvider>
+        <RouterProvider router={router} />
+      </ChatProvider>
+    </ThemeProvider>
   );
 }
 
