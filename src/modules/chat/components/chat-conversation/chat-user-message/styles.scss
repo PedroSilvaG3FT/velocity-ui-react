@@ -1,0 +1,12 @@
+@import "/src/styles/variables";
+
+#chat-user-message {
+  > h2 {
+    @apply mb-4;
+    color: $secondary;
+  }
+
+  > pre {
+    @apply text-balance;
+  }
+}

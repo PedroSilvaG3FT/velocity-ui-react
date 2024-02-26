@@ -15,7 +15,7 @@ body {
 
 * {
   @apply scroll-smooth;
-  //   @extend .invisible-scroll;
+  @extend .invisible-scroll;
 }
 
 a {

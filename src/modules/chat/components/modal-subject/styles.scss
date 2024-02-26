@@ -1,0 +1,11 @@
+#modal-subject {
+  @apply w-[40vw] p-6;
+
+  > h2 {
+    @apply text-lg mb-4;
+  }
+
+  > footer {
+    @apply mt-4 flex gap-4 items-center justify-end;
+  }
+}

@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react/dist/iconify.js";
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ChatContext } from "../../../../contexts/chat.context";
@@ -28,7 +29,9 @@ const ChatLayout: React.FC = () => {
         <ChatSideMenu />
       </aside>
 
-      <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>{">"}</button>
+      <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+        <Icon icon="ep:arrow-right" />
+      </button>
 
       <main className="app-container">
         <article>

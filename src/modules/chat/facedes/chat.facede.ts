@@ -1,4 +1,4 @@
-import store from "@/store";
+import store from "../../../store";
 
 import { ObjectUtil } from "../../@shared/util/object.util";
 import { IChatSetupModuleItem } from "../interfaces/chat-setup.interface";
