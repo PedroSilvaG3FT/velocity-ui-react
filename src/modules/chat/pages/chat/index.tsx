@@ -66,9 +66,8 @@ const Chat: React.FC = () => {
         message: [
           {
             role: EAuthorRole.User,
-            type: EMessageType.Text,
             content: "```" + model.prompt + "```",
-          },
+          } as ISendMessageItem,
         ],
       });
 
@@ -91,9 +90,8 @@ const Chat: React.FC = () => {
         message: [
           {
             role: EAuthorRole.User,
-            type: EMessageType.Image,
             content: "```" + model.prompt + "```",
-          },
+          } as ISendMessageItem,
         ],
       });
 
