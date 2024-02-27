@@ -1,6 +1,6 @@
 .markdown-preview {
-  @apply z-10 w-full overflow-hidden bg-none bg-transparent;
-
+  @apply z-10 w-full overflow-hidden bg-none;
+  background-color: transparent;
   ul,
   ol {
     @apply pl-0;
