@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface IOutsideClickWrapperProps {
   onOutsideClick: () => void;
@@ -10,7 +10,6 @@ const OutsideClickWrapper: React.FC<IOutsideClickWrapperProps> = ({
   children,
 }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [isInside, setIsInside] = useState(true);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -18,10 +17,7 @@ const OutsideClickWrapper: React.FC<IOutsideClickWrapperProps> = ({
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target as Node)
       ) {
-        setIsInside(false);
         onOutsideClick();
-      } else {
-        setIsInside(true);
       }
     };
 
