@@ -26,15 +26,15 @@ const SignUp: React.FC = () => {
         />
 
         <AppInput
-          value={password}
-          label="Password"
+          value={email}
+          label="e-mail"
           containerClassname="mb-2"
           onValueChange={(value) => setEmail(value)}
         />
 
         <AppInput
-          value={email}
-          label="e-mail"
+          value={password}
+          label="Password"
           containerClassname="mb-2"
           onValueChange={(value) => setPassword(value)}
         />
