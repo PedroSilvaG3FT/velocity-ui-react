@@ -6,6 +6,10 @@
     color: $secondary;
   }
 
+  > img {
+    @apply h-64 object-contain rounded-xl;
+  }
+
   > pre {
     @apply text-balance;
   }

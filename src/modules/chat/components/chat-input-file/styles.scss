@@ -1,0 +1,20 @@
+@import "/src/styles/variables";
+
+#chat-input-file {
+  @apply relative;
+
+  > label {
+    @apply flex items-center px-4 h-10 rounded-lg cursor-pointer;
+    background: $primary;
+    color: $white;
+
+    > i,
+    > svg {
+      @apply text-lg;
+    }
+  }
+
+  > input {
+    @apply absolute invisible h-0 w-0;
+  }
+}

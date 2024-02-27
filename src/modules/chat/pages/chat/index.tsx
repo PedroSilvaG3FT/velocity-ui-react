@@ -4,8 +4,11 @@ import { RootState } from "../../../../store";
 import ChatConversation, {
   ChatConversationHandler,
 } from "../../components/chat-conversation";
-import ChatFooter from "../../components/chat-footer";
+import ChatFooter, { ISubmitSearch } from "../../components/chat-footer";
 import ChatHeader from "../../components/chat-header";
+import { EAuthorRole } from "../../enums/chat-author-role.enum";
+import { EMessageType } from "../../enums/chat-message-type.enum";
+import { EChatSubmodulesType } from "../../enums/chat-submodules-type.enum";
 import { ISendMessageItem } from "../../interfaces/chat.interface";
 import { ChatService } from "../../services/chat.service";
 import "./styles.scss";
@@ -50,13 +53,8 @@ const Chat: React.FC = () => {
     }
   };
 
-  const handleSearch = async (prompt: string) => {
+  const handleSendText = async (model: ISubmitSearch) => {
     try {
-      setMessages([...messages, { role: "system", content: prompt }]);
-      setIsLoading(true);
-
-      handleScrollDown();
-
       const { data } = await chatService.sendMessage({
         idUser: userData.id,
         idIDE: selectedIdeId,
@@ -65,10 +63,81 @@ const Chat: React.FC = () => {
         idLanguage: selectedLanguageId,
         idSubModule: selectedSubmoduleId,
         idFramework: selectedFrameworkId,
-        message: [{ role: "system", content: "```" + prompt + "```" }],
+        message: [
+          {
+            role: EAuthorRole.User,
+            type: EMessageType.Text,
+            content: "```" + model.prompt + "```",
+          },
+        ],
       });
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleSendImage = async (model: ISubmitSearch) => {
+    try {
+      const { data } = await chatService.sendMessage({
+        idUser: userData.id,
+        idIDE: selectedIdeId,
+        idModule: selectedModuleId,
+        idSubject: selectedSubjectId,
+        idLanguage: selectedLanguageId,
+        idSubModule: selectedSubmoduleId,
+        idFramework: selectedFrameworkId,
+        message: [
+          {
+            role: EAuthorRole.User,
+            type: EMessageType.Image,
+            content: "```" + model.prompt + "```",
+          },
+        ],
+      });
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleSearch = async (model: ISubmitSearch) => {
+    try {
+      console.log("MODEL", model);
+
+      const messageTypeDisct = {
+        [EChatSubmodulesType.Text]: EMessageType.Text,
+        [EChatSubmodulesType.Image]: EMessageType.Image,
+      };
+
+      const messageType = messageTypeDisct[model.type];
+
+      setMessages([
+        ...messages,
+        {
+          type: messageType,
+          content: model.prompt,
+          role: EAuthorRole.User,
+        },
+      ]);
+
+      setIsLoading(true);
+      handleScrollDown();
+
+      const $request =
+        model.type === EChatSubmodulesType.Text
+          ? handleSendText(model)
+          : handleSendImage(model);
+
+      const { content } = await $request;
+
       setIsLoading(false);
-      setMessages([...messages, { role: "assistant", content: data.content }]);
+      setMessages([
+        ...messages,
+        { role: EAuthorRole.Assistant, type: messageType, content },
+      ]);
 
       scrollToLastMessage();
     } catch (error) {
@@ -79,15 +148,22 @@ const Chat: React.FC = () => {
 
   const getMessages = async () => {
     try {
+      setIsLoading(true);
       const { data } = await chatService.getMessages(selectedSubjectId);
-      console.log("MESSAGES ", data);
+
       const formattedMessages = data
-        .map((item) => ({ role: item.Role, content: item.Content }))
+        .map((item) => ({
+          role: item.Role,
+          content: item.Content,
+          type: EMessageType.Text,
+        }))
         .filter((item) => !!item.content);
 
       setMessages(formattedMessages);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 

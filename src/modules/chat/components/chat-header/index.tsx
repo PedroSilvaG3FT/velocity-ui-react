@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LogoCBYK from "../../../../assets/images/logo-cbyk.svg";
+import { ChatContext } from "../../../../contexts/chat.context";
 import { RootState } from "../../../../store";
 import { chatActions } from "../../../../store/reducers/chat.reducer";
 import AppSelect from "../../../@shared/components/form/app-select";
@@ -9,6 +11,8 @@ import { IChatSetupOptionsItem } from "../../interfaces/chat-setup.interface";
 import "./styles.scss";
 
 const ChatHeader: React.FC = () => {
+  const chatContext = useContext(ChatContext);
+
   const { ides, languages, frameworks } = useSelector(
     (state: RootState) => state.chatSetup
   );
@@ -58,24 +62,35 @@ const ChatHeader: React.FC = () => {
       <img src={LogoCBYK} alt="Velocity" />
 
       <section>
-        <AppSelect
-          value={language}
-          label="Language"
-          options={languagesOptions}
-          onChange={({ value }) => setLanguage(value)}
-        />
-        <AppSelect
-          value={framework}
-          label="Framework"
-          options={frameworkOptions}
-          onChange={({ value }) => setFramework(value)}
-        />
-        <AppSelect
-          value={ide}
-          label="IDE"
-          options={idesOptions}
-          onChange={({ value }) => setIde(value)}
-        />
+        {chatContext.isMediaMode ? (
+          <>
+            <article>
+              <Icon icon="mdi:art" />
+              Media mode
+            </article>
+          </>
+        ) : (
+          <>
+            <AppSelect
+              value={language}
+              label="Language"
+              options={languagesOptions}
+              onChange={({ value }) => setLanguage(value)}
+            />
+            <AppSelect
+              value={framework}
+              label="Framework"
+              options={frameworkOptions}
+              onChange={({ value }) => setFramework(value)}
+            />
+            <AppSelect
+              value={ide}
+              label="IDE"
+              options={idesOptions}
+              onChange={({ value }) => setIde(value)}
+            />
+          </>
+        )}
       </section>
     </article>
   );

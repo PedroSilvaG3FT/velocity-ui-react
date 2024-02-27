@@ -7,6 +7,10 @@
   max-height: $max-height;
   background: $bg-secondary;
 
+  &.media-mode {
+    @apply pr-44;
+  }
+
   .code-editor {
     @apply w-full min-h-[60px] absolute right-0 top-2/4 text-base resize-none whitespace-pre-wrap;
 
@@ -21,12 +25,16 @@
   }
 
   > article {
-    @apply h-full pb-3 flex items-end absolute top-0 right-4;
+    @apply h-full pb-3 flex gap-2 items-end absolute top-0 right-4;
 
     > button {
       @apply flex items-center gap-2 px-4 h-10 rounded-lg;
       background: $primary;
       color: $white;
+
+      &:disabled {
+        @apply opacity-60 cursor-not-allowed;
+      }
     }
   }
 }

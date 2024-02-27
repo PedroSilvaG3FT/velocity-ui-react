@@ -1,12 +1,17 @@
 import React, { createContext } from "react";
+import { useSelector } from "react-redux";
+import { EChatSubmodulesType } from "../modules/chat/enums/chat-submodules-type.enum";
 import {
   IChatSetupModuleItem,
   IChatSetupOptionsItem,
+  IChatSetupSubmoduleItem,
 } from "../modules/chat/interfaces/chat-setup.interface";
 import { ChatSetupService } from "../modules/chat/services/chat-setup.service";
+import { RootState } from "../store";
 import { chatSetupActions } from "../store/reducers/chat-setup.reducer";
 
 interface IChatContext {
+  isMediaMode: boolean;
   initSetup: () => Promise<void>;
 }
 
@@ -17,10 +22,14 @@ interface IChatProviderProps {
 const chatSetupService = new ChatSetupService();
 
 const ChatContext = createContext<IChatContext>({
+  isMediaMode: false,
   initSetup: () => new Promise<void>(() => {}),
 });
 
 const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
+  const { selectedSubmoduleId } = useSelector((state: RootState) => state.chat);
+  const { modules } = useSelector((state: RootState) => state.chatSetup);
+
   const buildSubmodules = async (modules: IChatSetupOptionsItem[]) => {
     const result: IChatSetupModuleItem[] = [];
 
@@ -83,7 +92,27 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
     }
   };
 
-  const providerValue = { initSetup };
+  const getSubmoduleById = (list: IChatSetupModuleItem[], id: number) => {
+    let submodule: IChatSetupSubmoduleItem = {} as IChatSetupSubmoduleItem;
+
+    list.forEach((item) => {
+      item.submodules.forEach((subItem) => {
+        if (subItem.id === id) submodule = subItem;
+      });
+    });
+
+    return submodule;
+  };
+
+  const getIsMediaMode = () => {
+    const submodule = getSubmoduleById(modules, selectedSubmoduleId);
+    return submodule.typeId === EChatSubmodulesType.Image;
+  };
+
+  const providerValue = {
+    initSetup,
+    isMediaMode: getIsMediaMode(),
+  };
 
   return (
     <ChatContext.Provider value={providerValue}>

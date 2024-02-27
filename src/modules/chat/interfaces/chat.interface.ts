@@ -1,3 +1,5 @@
+import { EMessageType } from "../enums/chat-message-type.enum";
+
 export interface ICreateSubject {
   idUser: number;
   idSubModule: number;
@@ -22,6 +24,7 @@ export interface ISubjectItem {
 export interface ISendMessageItem {
   role: string;
   content: string;
+  type: EMessageType;
 }
 
 export interface ISendMessage {

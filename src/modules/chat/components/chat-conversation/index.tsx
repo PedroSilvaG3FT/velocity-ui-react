@@ -1,4 +1,5 @@
 import React, { useImperativeHandle, useRef } from "react";
+import { EAuthorRole } from "../../enums/chat-author-role.enum";
 import { ISendMessageItem } from "../../interfaces/chat.interface";
 import ChatBotMessage from "./chat-bot-message";
 import ChatLoading from "./chat-loading";
@@ -19,7 +20,7 @@ const ChatConversation: React.ForwardRefRenderFunction<
   IChatConversationProps
 > = (props, ref) => {
   const { loading, messages } = props;
-  const botMessageRole: string = "assistant";
+  const botMessageRole: string = EAuthorRole.Assistant;
   const messagesContainerRef = useRef<HTMLElement>(null);
 
   const getScrollPositionLastMessage = (): number | null => {

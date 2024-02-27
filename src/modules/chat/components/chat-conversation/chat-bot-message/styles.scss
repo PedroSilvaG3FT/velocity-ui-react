@@ -15,4 +15,8 @@
       color: $primary;
     }
   }
+
+  > img {
+    @apply h-64 object-contain rounded-xl;
+  }
 }
