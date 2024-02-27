@@ -5,6 +5,7 @@ import "./styles.scss";
 interface IAppInput extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   label: string;
+  containerClassname?: string;
   onValueChange: (value: string) => void;
 }
 
@@ -15,6 +16,7 @@ const AppInput: React.FC<IAppInput> = (props) => {
     onValueChange,
     type = "text",
     placeholder = "",
+    containerClassname = "",
     ...rest
   } = props;
 
@@ -27,6 +29,7 @@ const AppInput: React.FC<IAppInput> = (props) => {
     const items: string[] = [];
 
     items.push(defaultClass);
+    items.push(containerClassname);
     if (!!value) items.push(filled);
 
     return items.join(" ");

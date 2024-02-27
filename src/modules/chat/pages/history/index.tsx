@@ -43,14 +43,13 @@ const History: React.FC = () => {
 
   const getSubjects = async () => {
     try {
-      console.log("submoduleId :", submoduleId);
       const data = await chatService.getSubjects(
         selectedSubmoduleId,
         userData.id
       );
       setSubjects(data);
     } catch (error) {
-      console.log(error);
+      console.error("[getSubjects] ", error);
     }
   };
 
@@ -62,7 +61,6 @@ const History: React.FC = () => {
   useEffect(() => {
     const isSubmoduleChanged = submoduleId !== selectedSubmoduleId;
 
-    console.log("effect selectedSubmoduleId :", selectedSubmoduleId);
     if (isSubmoduleChanged && selectedSubmoduleId) {
       setSubmoduleId(selectedSubmoduleId);
 

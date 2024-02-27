@@ -1,7 +1,7 @@
 @import "/src/styles/variables";
 
 .app-input {
-  @apply h-14 flex flex-col relative;
+  @apply h-14 w-full flex flex-col relative;
 
   > label {
     @apply absolute left-4 top-2/4 mb-1.5 transition-all duration-300;

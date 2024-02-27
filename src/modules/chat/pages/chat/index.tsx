@@ -105,8 +105,6 @@ const Chat: React.FC = () => {
 
   const handleSearch = async (model: ISubmitSearch) => {
     try {
-      console.log("MODEL", model);
-
       const messageTypeDisct = {
         [EChatSubmodulesType.Text]: EMessageType.Text,
         [EChatSubmodulesType.Image]: EMessageType.Image,
@@ -141,7 +139,7 @@ const Chat: React.FC = () => {
 
       scrollToLastMessage();
     } catch (error) {
-      console.log(error);
+      console.error("[handleSearch] ", error);
       setIsLoading(false);
     }
   };
@@ -162,7 +160,7 @@ const Chat: React.FC = () => {
       setMessages(formattedMessages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("[getMessages] ", error);
       setIsLoading(false);
     }
   };

@@ -9,11 +9,11 @@
   }
 
   > footer {
-    @apply p-2;
+    @apply p-2 grid gap-2 grid-cols-[1fr_20%] items-center;
     border-top: 1px solid $bg-primary;
 
     > button {
-      @apply w-full flex gap-2 items-center rounded-xl p-4 duration-300;
+      @apply w-full flex gap-2 items-center justify-center rounded-xl p-4 duration-300;
       transition-property: background;
 
       &:hover {

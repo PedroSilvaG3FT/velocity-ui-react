@@ -72,7 +72,7 @@ const ChatSideMenuItem: React.FC<IChatSideMenuItemProps> = (props) => {
 
       navigate("/chat");
     } catch (error) {
-      console.log(error);
+      console.error("[handleCreateNewChat ]", error);
     }
   };
 

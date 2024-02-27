@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store";
 import ChatSideMenuItem from "./chat-side-menu-item";
 
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { AuthContext } from "../../../../../contexts/auth.context";
 import "./styles.scss";
 
 const ChatSideMenu: React.FC = () => {
-  const { userData } = useSelector((state: RootState) => state.auth);
+  const { shortUserName, logout } = useContext(AuthContext);
   const { modules } = useSelector((state: RootState) => state.chatSetup);
   const { selectedModuleId } = useSelector((state: RootState) => state.chat);
 
@@ -24,8 +26,11 @@ const ChatSideMenu: React.FC = () => {
 
       <footer>
         <button>
-          <i className="iconify" data-icon="mingcute:settings-6-line"></i>
-          <span>{userData.name}</span>
+          <span>Hello, {shortUserName}</span>
+        </button>
+
+        <button onClick={logout}>
+          <Icon icon="mdi-light:logout" />
         </button>
       </footer>
     </section>
